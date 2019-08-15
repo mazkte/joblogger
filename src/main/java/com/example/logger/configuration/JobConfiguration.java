@@ -63,18 +63,13 @@ public class JobConfiguration {
 
     private void loadBasicProperties( Properties globalProperties ){
 
-        enableLogConsole    = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.console.enabled", "false") );
-        enableLogFile       = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.filelog.enabled", "false") );
-        enableLogDatabase   = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.database.enabled","false") );
+        enableLogConsole    = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.console.enabled") );
+        enableLogFile       = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.filelog.enabled") );
+        enableLogDatabase   = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.database.enabled") );
 
-        allowMessageLevel   = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.message","false") );
-        allowWarningLevel   = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.warning","false") );
-        allowErrorLevel     = Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.error","false") );
-
-        setAllowMessageLevel( allowMessageLevel );
-        setAllowWarningLevel( allowWarningLevel );
-        setAllowErrorLevel( allowErrorLevel );
-
+        setAllowMessageLevel(  Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.message" ) ) );
+        setAllowWarningLevel( Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.warning") ) );
+        setAllowErrorLevel( Boolean.valueOf( globalProperties.getProperty("joblogger.configuration.level.error" ) ) );
     }
 
     private void loadDbProperties( Properties globalProperties ){

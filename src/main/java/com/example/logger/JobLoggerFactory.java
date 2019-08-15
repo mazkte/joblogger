@@ -15,38 +15,7 @@ public class JobLoggerFactory {
     public static final int FILE_TYPE = 2;
     public static final int DATABASE_TYPE = 3;
 
-    private JobLoggerFactory(){}
-
-    public static Logger getLogger(){
-        return new ConsoleLogger();
-    }
-
-    /**
-     *
-     * @param type
-     * @param configuration
-     * @return
-     */
-    public static Logger create( int type , JobConfiguration configuration){
-        switch ( type ){
-            case CONSOLE_TYPE: return createConsoleLogger( configuration.getFileLogProperties() ,
-                                                configuration.isAllowErrorLevel(),
-                                                configuration.isAllowMessageLevel(),
-                                                configuration.isAllowWarningLevel() );
-
-            case FILE_TYPE: return createFileJobLogger( configuration.getConsoleProperties() ,
-                                                configuration.isAllowErrorLevel(),
-                                                configuration.isAllowMessageLevel(),
-                                                configuration.isAllowWarningLevel() );
-
-            case DATABASE_TYPE: return createDatabaseLogger( configuration.getDbProperties() ,
-                                                configuration.isAllowErrorLevel(),
-                                                configuration.isAllowMessageLevel(),
-                                                configuration.isAllowWarningLevel() );
-            default: return null;
-
-        }
-    }
+    private JobLoggerFactory(){ }
 
     /**
      *

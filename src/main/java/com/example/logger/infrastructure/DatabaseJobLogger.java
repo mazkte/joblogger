@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 public class DatabaseJobLogger implements Logger {
 
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger( DatabaseJobLogger.class.getName() );
-
     private static DatabaseJobLogger instance = null;
 
     private Configuration configuration;

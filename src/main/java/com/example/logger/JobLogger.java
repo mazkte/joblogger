@@ -42,7 +42,7 @@ public class JobLogger {
             return;
         }
 
-        validFilters( onlyWarnings, onlyMessage, onlyError );
+        validFilters( onlyMessage, onlyWarnings, onlyError );
 
         List<JobLevel> defaultLevels = configuration.getLevels();
 

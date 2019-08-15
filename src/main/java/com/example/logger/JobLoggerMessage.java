@@ -1,9 +1,8 @@
 package com.example.logger;
 
-
-import java.sql.Date;
 import java.text.DateFormat;
 import java.time.Instant;
+import java.util.Date;
 
 public final class JobLoggerMessage {
 

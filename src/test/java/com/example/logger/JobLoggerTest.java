@@ -142,13 +142,6 @@ public class JobLoggerTest {
         assertIterableEquals( Arrays.asList( JobLevel.MESSAGE , JobLevel.WARNING , JobLevel.ERROR ) , levels );
 
         jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
-        jobLogger.log( "TEST MESSAGE FOR FILE" );
     }
 
     @Test
@@ -258,7 +251,7 @@ public class JobLoggerTest {
     }
 
     /**
-     * Test con configuracion dinamico en archivo properties
+     * Test con configuracion en archivo properties
      */
     @Test
     public void testCreateJobLoggerFromPropertiesConfigThenOk(){

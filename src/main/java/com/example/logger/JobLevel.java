@@ -3,9 +3,9 @@ package com.example.logger;
 
 public enum JobLevel {
 
-    MESSAGE("message"),
-    WARNING("warning"),
-    ERROR("error");
+    MESSAGE("MESSAGE"),
+    WARNING("WARNING"),
+    ERROR("ERROR");
 
     private String label;
 
