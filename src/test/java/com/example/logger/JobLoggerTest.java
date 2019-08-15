@@ -25,6 +25,8 @@ public class JobLoggerTest {
 
     private Logger logger = LoggerFactory.getLogger( JobLogger.class );
 
+    private String pathname="C:\\opt\\logger\\logfile.txt";
+
     @Test
     public void testConnectionTypeNotSetForLogThenError(){
 
@@ -126,7 +128,7 @@ public class JobLoggerTest {
         JobConfiguration currentConfiguration =  jobLogger.getConfiguration();
 
         Properties properties = new Properties();
-        properties.put("joblogger.configuration.logfile.properties.path","C:\\opt\\logger\\logfile.txt");
+        properties.put("joblogger.configuration.logfile.properties.path",pathname);
 
         currentConfiguration.setFileLogProperties(  properties );
 
@@ -139,6 +141,13 @@ public class JobLoggerTest {
         List<JobLevel> levels = jobLogger.getConfiguration().getLevels();
         assertIterableEquals( Arrays.asList( JobLevel.MESSAGE , JobLevel.WARNING , JobLevel.ERROR ) , levels );
 
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
+        jobLogger.log( "TEST MESSAGE FOR FILE" );
         jobLogger.log( "TEST MESSAGE FOR FILE" );
     }
 
@@ -167,6 +176,7 @@ public class JobLoggerTest {
         assertIterableEquals( Arrays.asList( JobLevel.MESSAGE ) , levels );
 
         jobLogger.log( "TEST MESSAGE FOR FILE" );
+
     }
 
     @Test

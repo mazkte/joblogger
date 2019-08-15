@@ -14,6 +14,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.stream.Collectors;
 
 public class FileJobLogger implements Logger {
@@ -26,6 +28,8 @@ public class FileJobLogger implements Logger {
     private Configuration configuration;
 
     private static FileJobLogger instance = null;
+
+    private FileHandler fileHandler;
 
     public static FileJobLogger getInstance( String pathname ){
         if( instance == null ){
@@ -56,9 +60,11 @@ public class FileJobLogger implements Logger {
     private void createFileIfNoExist( String pathname ){
 
         Path path = Paths.get( pathname );
-
         if( !path.toFile().exists()){
             try {
+                if( path.getParent().toFile().isAbsolute() && !path.getParent().toFile().exists()){
+                    Files.createDirectories(  path.getParent() );
+                }
                 Files.createFile( path );
             } catch (IOException e) {
                 throw new JobLoggerException( e.getMessage());
@@ -68,7 +74,8 @@ public class FileJobLogger implements Logger {
 
     private void setupHandler(){
         try {
-            logger.addHandler( new FileHandler(pathname, append) );
+            fileHandler = new FileHandler(pathname, append);
+            logger.addHandler( fileHandler );
         } catch (IOException e) {
             throw new JobLoggerException( e.getMessage());
         }
@@ -82,7 +89,11 @@ public class FileJobLogger implements Logger {
                 .collect(Collectors.toList());
 
         if(!CollectionUtils.isEmpty( filterLevels )){
-            logger.info( () -> JobLoggerMessage.formatText( StringUtils.join( filterLevels,"|" ), message )  );
+
+            LogRecord record = new LogRecord(Level.INFO, JobLoggerMessage.formatText( StringUtils.join( filterLevels,"|" ), message ) );
+            record.setLoggerName( FileJobLogger.class.getName() );
+
+            fileHandler.publish( record );
         }
 
     }
